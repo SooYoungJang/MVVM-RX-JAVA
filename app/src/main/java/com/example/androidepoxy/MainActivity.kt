@@ -1,35 +1,37 @@
 package com.example.androidepoxy
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.airbnb.epoxy.Carousel
-import com.example.androidepoxy.api.StarBucksApiService
 import com.example.androidepoxy.databinding.ActivityMainBinding
-import com.example.androidepoxy.di.RetroFitModule
+import com.example.androidepoxy.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Retrofit
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity@Inject constructor(
-    private val starBucksApiService: StarBucksApiService
-): AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         Carousel.setDefaultGlobalSnapHelperFactory(null)
+        testa()
 
-
-    }
-    suspend fun test() {
-        starBucksApiService.getMenu().let {
+        viewModel.ProductAllLiveData.observe(this, Observer {
+            var count = 1
             it.menus?.forEach {
-                Log.d("sdfsf", "ddd ${it.name}")
+                Log.d("sdfsdf" , "ssss $count  ${it.name}")
+                count++
             }
-        }
+
+        })
     }
+    private fun testa() {
+        viewModel.getMenu()
+    }
+
 }

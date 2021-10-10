@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id "kotlin-kapt"
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -48,12 +49,15 @@ dependencies {
 
     //hilt
     api appDependencies.hilt
-    api appDependencies.hiltCompiler
+    kapt appDependencies.hiltCompiler
 
     //viewMdoel
     api appDependencies.viewmodel
     //livedata
     api appDependencies.livedata
+
+    // Annotation processor
+    kapt appDependencies.lifeCycleCompiler
 
     //Retrofit
     api dataDependencies.retrofit
