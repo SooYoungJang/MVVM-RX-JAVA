@@ -2,6 +2,7 @@ package com.example.androidepoxy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.airbnb.epoxy.Carousel
 import com.example.androidepoxy.api.StarBucksApiService
 import com.example.androidepoxy.databinding.ActivityMainBinding
@@ -11,11 +12,11 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity@Inject constructor(
+    private val starBucksApiService: StarBucksApiService
+): AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    @Inject
-    var fds : RetroFitModule
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,5 +24,12 @@ class MainActivity : AppCompatActivity() {
         Carousel.setDefaultGlobalSnapHelperFactory(null)
 
 
+    }
+    suspend fun test() {
+        starBucksApiService.getMenu().let {
+            it.menus?.forEach {
+                Log.d("sdfsf", "ddd ${it.name}")
+            }
+        }
     }
 }
