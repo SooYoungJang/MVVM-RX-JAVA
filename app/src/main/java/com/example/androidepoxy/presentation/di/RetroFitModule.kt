@@ -1,6 +1,6 @@
-package com.example.androidepoxy.di
+package com.example.androidepoxy.presentation.di
 
-import com.example.androidepoxy.api.StarBucksApiService
+import com.example.androidepoxy.data.api.StarBucksApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

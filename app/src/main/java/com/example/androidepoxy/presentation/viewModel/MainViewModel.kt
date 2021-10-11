@@ -1,11 +1,11 @@
-package com.example.androidepoxy.viewModel
+package com.example.androidepoxy.presentation.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.androidepoxy.api.StarBucksApiService
-import com.example.androidepoxy.model.MenuResponse
+import com.example.androidepoxy.data.api.StarBucksApiService
+import com.example.androidepoxy.data.model.MenuResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

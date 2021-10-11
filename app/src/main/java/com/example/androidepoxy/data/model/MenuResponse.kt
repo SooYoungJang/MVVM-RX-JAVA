@@ -1,4 +1,4 @@
-package com.example.androidepoxy.model
+package com.example.androidepoxy.data.model
 
 data class MenuResponse(
     val menus: List<ProductCategory>? = null

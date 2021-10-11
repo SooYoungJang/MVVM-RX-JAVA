@@ -1,12 +1,13 @@
-package com.example.androidepoxy
+package com.example.androidepoxy.presentation.view
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.airbnb.epoxy.Carousel
+import com.example.androidepoxy.R
 import com.example.androidepoxy.databinding.ActivityMainBinding
-import com.example.androidepoxy.viewModel.MainViewModel
+import com.example.androidepoxy.presentation.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
