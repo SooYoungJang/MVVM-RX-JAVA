@@ -1,33 +1,28 @@
 package com.example.androidepoxy.presentation.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.androidepoxy.data.api.StarBucksApiService
-import com.example.androidepoxy.data.model.MenuResponse
+import com.example.androidepoxy.domain.usecase.GetMovieListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val starBucksApiService: StarBucksApiService): ViewModel(){
+class MainViewModel @Inject constructor(
+    private val getMovieListUseCase: GetMovieListUseCase
+) : ViewModel() {
 
-    private val _ProductAllLiveData = MutableLiveData<MenuResponse>()
-    val ProductAllLiveData: LiveData<MenuResponse>
-        get() = _ProductAllLiveData
+    private val _movieList = MutableLiveData<String>()
+    val movieList: LiveData<String>
+        get() = _movieList
 
-
-    fun getMenu() {
-        viewModelScope.launch {
-            testtest()
-        }
+    init {
+        getMovielist()
     }
 
-    suspend fun testtest() {
-        starBucksApiService.getMenu().body().let {
-            _ProductAllLiveData.value = it
-        }
-    }
 
+    private fun getMovielist() {
+        _movieList.postValue("testesttestestst")
+    }
 }

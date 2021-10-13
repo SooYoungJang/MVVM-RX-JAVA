@@ -1,6 +1,6 @@
 package com.example.androidepoxy.presentation.di
 
-import com.example.androidepoxy.data.api.StarBucksApiService
+import com.example.androidepoxy.data.api.NaverMovieApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,13 +18,13 @@ class RetroFitModule {
     fun provideRetrofit() : Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("https://www.starbucks.com/")
+            .baseUrl("https://openapi.naver.com")
             .build()
     }
 
     @Singleton
     @Provides
-    fun provideNewsApiService(retrofit: Retrofit) : StarBucksApiService {
-        return retrofit.create(StarBucksApiService::class.java)
+    fun provideNewsApiService(retrofit: Retrofit) : NaverMovieApiService {
+        return retrofit.create(NaverMovieApiService::class.java)
     }
 }
