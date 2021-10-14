@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         Carousel.setDefaultGlobalSnapHelperFactory(null)
         viewModel.movieList.observe(this, Observer {
-            
+
         })
 
     }
 
-}
+}  
