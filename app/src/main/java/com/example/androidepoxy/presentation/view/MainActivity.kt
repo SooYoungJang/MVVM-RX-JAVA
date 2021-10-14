@@ -2,6 +2,7 @@ package com.example.androidepoxy.presentation.view
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.RelativeLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -15,6 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
+    private val tag = MainActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         Carousel.setDefaultGlobalSnapHelperFactory(null)
         viewModel.movieList.observe(this, Observer {
-            Log.d("test", it)
+            
         })
 
     }

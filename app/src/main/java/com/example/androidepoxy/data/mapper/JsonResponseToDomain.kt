@@ -14,7 +14,7 @@ internal fun NaverMovieResponse.toDomain(): NaverMovieVo {
         this.total
     )
 }
-  
+
 internal fun Item.toDomain(): MovieItemVo {
     return MovieItemVo(
         this.actor,
