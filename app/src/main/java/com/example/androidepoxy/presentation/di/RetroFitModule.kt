@@ -1,6 +1,6 @@
 package com.example.androidepoxy.presentation.di
 
-import com.example.androidepoxy.data.api.NaverMovieApiService
+import com.example.androidepoxy.data.api.NaverApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,8 +31,8 @@ class RetroFitModule {
 
     @Singleton
     @Provides
-    fun provideNewsApiService(retrofit: Retrofit) : NaverMovieApiService {
-        return retrofit.create(NaverMovieApiService::class.java)
+    fun provideNewsApiService(retrofit: Retrofit) : NaverApiService {
+        return retrofit.create(NaverApiService::class.java)
     }
 
     @Singleton

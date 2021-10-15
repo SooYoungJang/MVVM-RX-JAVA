@@ -23,10 +23,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Carousel.setDefaultGlobalSnapHelperFactory(null)
+        viewModel.getMovielist("아이언맨") //뷰단을 만들기 전에 임시로 테스트용. 하드코딩.
         viewModel.movieList.observe(this, Observer {
             
         })
 
+        viewModel.shopList.observe(this, Observer {
+            it.items.forEach {
+                Log.d(tag," test = ${it.title}")
+            }
+        })
     }
-
 }

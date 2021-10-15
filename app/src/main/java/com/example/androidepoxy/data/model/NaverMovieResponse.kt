@@ -2,13 +2,13 @@ package com.example.androidepoxy.data.model
 
 data class NaverMovieResponse(
     val display: Int,
-    val items: List<Item>,
+    val items: List<MovieItem>,
     val lastBuildDate: String,
     val start: Int,
     val total: Int
 )
 
-data class Item(
+data class MovieItem(
     val actor: String,
     val director: String,
     val image: String,

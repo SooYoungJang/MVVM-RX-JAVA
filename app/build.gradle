@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id "kotlin-kapt"
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -49,6 +50,7 @@ dependencies {
 
     //hilt
     api appDependencies.hilt
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt appDependencies.hiltCompiler
 
     //viewMdoel
@@ -72,6 +74,10 @@ dependencies {
     api dataDependencies.rxjavaAndroid
     api dataDependencies.rxjavaKotlin
     api dataDependencies.rxjava
+
+    //navigation
+    api appDependencies.navigationFragment
+    api appDependencies.navigationUi
 
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'

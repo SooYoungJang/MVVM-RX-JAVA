@@ -5,11 +5,11 @@ import com.example.androidepoxy.domain.repository.NaverRepository
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.core.SingleObserver
 
-class GetMovieListUseCase(private val naverMovieRepository: NaverRepository) : SingleUseCase<NaverMovieVo,GetMovieListUseCase.Params> {
+class GetMovieListUseCase(private val naverRepository: NaverRepository) : SingleUseCase<NaverMovieVo,GetMovieListUseCase.Params> {
 
 
     override fun invoke(params: Params): Single<NaverMovieVo> {
-        return naverMovieRepository.getMovieList(params.quert,params.country)
+        return naverRepository.getMovieList(params.quert,params.country)
     }
 
     data class Params(
