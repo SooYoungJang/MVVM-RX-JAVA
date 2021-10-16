@@ -48,7 +48,7 @@ class MainViewModel @Inject constructor(
             }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Log.d(tag, " get API MovieList ${it.total}" )
+                       
             }, {
                 Log.d(tag, " get API MovieList Error" )
             })
