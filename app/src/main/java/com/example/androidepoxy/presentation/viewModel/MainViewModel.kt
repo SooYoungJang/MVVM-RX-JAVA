@@ -54,7 +54,7 @@ class MainViewModel @Inject constructor(
                     }
             }
             .subscribe({
-                Log.d(tag, " get API MovieList ${it.total}" )
+  
             }, {
                 Log.d(tag, " get API MovieList Error" )
             })
