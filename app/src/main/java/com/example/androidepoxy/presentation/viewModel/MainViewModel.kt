@@ -8,8 +8,10 @@ import com.example.androidepoxy.domain.model.NaverMovieVo
 import com.example.androidepoxy.domain.model.NaverShopVo
 import com.example.androidepoxy.domain.usecase.GetMovieListUseCase
 import com.example.androidepoxy.domain.usecase.GetShopListUseCase
+import com.example.androidepoxy.presentation.model.ProductParams
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.toObservable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
@@ -35,18 +37,22 @@ class MainViewModel @Inject constructor(
 
 
     /**
-     * 영화 리스트에서 영화 배우를 빼오고 그 배우에 맞는 상품리스트를 호출합니다.
+     * 영화 리스트에서 영화 배우이름을 가져오며, 그 배우에 맞는 상품리스트를 호출합니다.
      * @param query : 영화제목
      */
     fun getMovielist(query: String,country: String) {
+
         getMovieListUseCase.invoke(
             GetMovieListUseCase.Params(query,country))
             .subscribeOn(Schedulers.io())
-            .flatMap {movieItem ->
+            .observeOn(Schedulers.computation())
+            .flatMap {it -> it.items.toObservable()}
+            .flatMap {movieListItems ->
                 getShopListUseCase.invoke(GetShopListUseCase.Params(query))
-                    .map { it ->  }
+                    .map { it ->
+                        ProductParams(actor = movieListItems.iterator() })
+                    }
             }
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Log.d(tag, " get API MovieList ${it.total}" )
             }, {
