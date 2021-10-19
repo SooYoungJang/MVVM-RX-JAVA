@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.airbnb.epoxy.Carousel
 import com.example.androidepoxy.R
 import com.example.androidepoxy.databinding.ActivityMainBinding
+import com.example.androidepoxy.presentation.model.SearchParams
 import com.example.androidepoxy.presentation.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,15 +24,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         Carousel.setDefaultGlobalSnapHelperFactory(null)
-        viewModel.getMovielist("아이언맨") //뷰단을 만들기 전에 임시로 테스트용. 하드코딩.
-        viewModel.movieList.observe(this, Observer {
-            
-        })
 
-        viewModel.shopList.observe(this, Observer {
-            it.items.forEach {
-                Log.d(tag," test = ${it.title}")
-            }
+
+        viewModel.getMovielist(SearchParams("아이언맨","US")) //뷰단을 만들기 전에 임시로 테스트용. 하드코딩.
+
+        viewModel.productList.observe(this, Observer {
+            Log.d(tag," testes == ${it.movieItem.size}")
+            Log.d(tag," testes == ${it.shopItem.size}")
         })
     }
 }

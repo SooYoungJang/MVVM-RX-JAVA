@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.androidepoxy.R
+import com.example.androidepoxy.databinding.ActivityMainBinding
 
 class HomeFragment : Fragment() {
 
+    private var _binding: FragmenHo? = null
+    private val binding get() = _binding!!
+    private val TAG = HomeFragment::class.java.simpleName
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -9,6 +9,7 @@ import com.example.androidepoxy.domain.model.NaverShopVo
 import com.example.androidepoxy.domain.usecase.GetMovieListUseCase
 import com.example.androidepoxy.domain.usecase.GetShopListUseCase
 import com.example.androidepoxy.presentation.model.ProductParams
+import com.example.androidepoxy.presentation.model.SearchParams
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
@@ -23,40 +24,35 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val tag = MainViewModel::class.java.simpleName
-    private val _movieList = MutableLiveData<NaverMovieVo>()
-    val movieList: LiveData<NaverMovieVo>
-        get() = _movieList
 
-    private val _shopList = MutableLiveData<NaverShopVo>()
-    val shopList: LiveData<NaverShopVo>
-        get() = _shopList
-
-    init {
-
-    }
-
+    private val _productList = MutableLiveData<ProductParams>()
+    val productList: LiveData<ProductParams>
+        get() = _productList
 
     /**
      * 영화 리스트에서 영화 배우이름을 가져오며, 그 배우에 맞는 상품리스트를 호출합니다.
      * @param query : 영화제목
      */
-    fun getMovielist(query: String,country: String) {
+    fun getMovielist(searchParams : SearchParams) {
 
         getMovieListUseCase.invoke(
-            GetMovieListUseCase.Params(query,country))
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.computation())
-            .flatMap {it -> it.items.toObservable()}
-            .flatMap {movieListItems ->
-                getShopListUseCase.invoke(GetShopListUseCase.Params(query))
-                    .map { it ->
-                        ProductParams(actor = movieListItems.iterator() })
+            GetMovieListUseCase.Params(searchParams.searchName,searchParams.searchCountry))
+            .flatMap {movieItems ->
+                getShopListUseCase.invoke(GetShopListUseCase.Params(searchParams.searchName))
+                    .map { shopItem ->
+                        ProductParams(
+                            movieItem = movieItems.items,
+                            shopItem = shopItem.items
+                        )
                     }
             }
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-  
+                _productList.postValue(it)
             }, {
                 Log.d(tag, " get API MovieList Error" )
             })
     }
+
 }
