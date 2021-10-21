@@ -7,6 +7,10 @@ import com.example.androidepoxy.R
 import com.example.androidepoxy.databinding.ActivityMainBinding
 import com.example.androidepoxy.presentation.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import android.widget.Toast
+
+
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -16,8 +20,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
 
     }
 }

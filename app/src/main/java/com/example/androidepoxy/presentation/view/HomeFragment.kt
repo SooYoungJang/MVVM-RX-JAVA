@@ -13,6 +13,8 @@ import com.airbnb.epoxy.Carousel
 import com.example.androidepoxy.databinding.FragmentHomeBinding
 import com.example.androidepoxy.presentation.epoxy.ProductListController
 import com.example.androidepoxy.presentation.model.SearchParams
+import com.example.androidepoxy.presentation.utils.GridSpacingItemDecoration
+import com.example.androidepoxy.presentation.utils.dp
 import com.example.androidepoxy.presentation.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,8 +36,8 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false).apply {
             productRcv.setHasFixedSize(true)
             productRcv.setController(albumListController)
-            productRcv.layoutManager = GridLayoutManager(context, 2)
-//            productRcv.addItemDecoration(GridSpacingItemDecoration(16.dp(), true))
+            productRcv.layoutManager = GridLayoutManager(context, 3)
+            productRcv.addItemDecoration(GridSpacingItemDecoration(16.dp(), true))
         }
         return binding.root
     }
@@ -45,6 +47,8 @@ class HomeFragment : Fragment() {
 
 
         Carousel.setDefaultGlobalSnapHelperFactory(null)
+
+
         vm.getMovielist(SearchParams("아이언맨","US"))
 
         vm.productList.observe(viewLifecycleOwner, Observer {

@@ -28,7 +28,7 @@ abstract class ProductListModelItemView : EpoxyModelWithHolder<ProductListItemVi
     override fun bind(holder: ProductListItemViewHolder) {
         with(holder) {
             glide.load(thumbnailUri)
-                .override(400, 400)
+                .override(300, 300)
                 .into(ivAlbumThumbnail)
             tvAlbumName.text = albumName
             tvSourceCount.text = imageCount

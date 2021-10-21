@@ -5,6 +5,11 @@ import com.airbnb.epoxy.*
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
+/**
+ * [EpoxyHolder]로 뷰 바인딩을 쉽게 하기 위한 패턴
+ *
+ * 사용 예시는 [com.airbnb.epoxy.kotlinsample.models.ItemEpoxyHolder]를 참조하세요.
+ */
 abstract class KotlinEpoxyHolder : EpoxyHolder() {
 
     private lateinit var view: View

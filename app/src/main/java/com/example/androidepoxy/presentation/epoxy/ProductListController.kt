@@ -16,8 +16,7 @@ class ProductListController : TypedEpoxyController<List<MovieItemVo>>() {
             }
         }
     }
-
-    /*interface AdapterCallbacksListener {
+/*interface AdapterCallbacksListener {
         fun onClickAlbum(album: AlbumListItem)
     }*/
 }
